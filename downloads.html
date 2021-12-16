@@ -1,0 +1,103 @@
+---
+layout: page
+permalink: /downloads
+headline: Downloads
+title: Downloads - NikGApps
+bClass: downloads
+---
+
+<div class="downloads__wrapper">
+    <div class="downloads__inner">
+        <div class="downloads">
+            <div class="tab__item">
+                <button class="tab__btn active">
+                    <i class="fa fa-cube"></i> Packages
+                </button>
+                <!-- <button class="tab__btn">
+                    <i class="fa fa-puzzle-piece"></i> Addons
+                </button> -->
+            </div>
+            <div class="tab__content">
+                <div class="tab__pane tab__packages">
+                    <!-- <h2>Packages</h2> -->
+                    <div class="downloads__grid">
+                        {% for item in site.data.downloads.packages %}
+                        <div class="item {{item.title | downcase}}">
+                            <h3>{{item.title}}</h3>
+                            {% if item.message %}
+                            <p class="info__box">
+                                {{item.message}}
+                            </p>
+                            {% endif %}
+                            <ul>
+                                {% for entry in item.contains %}
+                                <li>{{entry.item}}</li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+                <!-- <div class="tab__pane tab__addons">
+                    <div class="downloads__grid">
+                        {% for item in site.data.addons.addons %}
+                        <div class="item">
+                            <h3>{{item.title}}</h3>
+                            <p>
+                                {{item.contains}}
+                            </p>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div> -->
+            </div>
+        </div>
+    </div>
+    <div id="downloads">
+        <a href="https://sourceforge.net/projects/nikgapps/files/" class="download__btn"><i class="fa fa-download"></i>
+            Download Now</a>
+    </div>
+
+
+    <div class="latest__changelogs">
+        {% for item in site.data.changelogs limit:1 %}
+        <h3>Latest Update - {{item.date}}</h3>
+        <ul>
+            {% for entry in item.changes %}
+            <li>{{entry.item}}</li>
+            {% endfor %}
+        </ul>
+        {% endfor %}
+
+    </div>
+
+    <div class="older__changelogs">
+        <div class="ui styled accordion">
+            <div class="title">
+                <i class="dropdown icon"></i>
+                Older Changelogs
+            </div>
+            <div class="content">
+                <p class="transition hidden">
+                    {% for item in site.data.changelogs offset:1 %}
+                <div class="title">
+                    <i class="dropdown icon"></i>
+                    {{item.date}}
+                </div>
+                <div class="content">
+                    <p class="transition hidden">
+                    <ul>
+                        {% for entry in item.changes %}
+                        <li>{{entry.item}}</li>
+                        {% endfor %}
+                    </ul>
+
+                    </p>
+                </div>
+                {% endfor %}
+                </p>
+            </div>
+
+        </div>
+    </div>
+</div>
